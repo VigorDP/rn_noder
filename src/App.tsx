@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {HomeScreen, AccountScreen} from 'screens/index';
 import {Provider} from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 import getStore from 'store/getStore';
 
 enableScreens();
@@ -31,6 +32,7 @@ export default function App() {
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       store.dispatch({type: 'RESTORE_TOKEN', token: userToken});
+      SplashScreen.hide();
     };
     bootstrapAsync();
   }, []);
