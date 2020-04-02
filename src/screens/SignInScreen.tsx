@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {View, TextInput, Button} from 'react-native';
-import {actions} from 'mirrorx';
 
 function SignInScreen() {
   const [username, setUsername] = React.useState('');
