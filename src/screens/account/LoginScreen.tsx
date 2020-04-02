@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, TextInput, Button} from 'react-native';
 
-function SignInScreen() {
+function LoginScreen() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -46,4 +46,4 @@ function SignInScreen() {
   );
 }
 
-export default SignInScreen;
+export default LoginScreen;

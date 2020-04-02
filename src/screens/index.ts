@@ -1,4 +1,4 @@
-import HomeScreen from './HomeScreen';
-import SignInScreen from './SignInScreen';
+import HomeScreen from './home';
+import AccountScreen from './account';
 
-export {HomeScreen, SignInScreen};
+export {HomeScreen, AccountScreen};

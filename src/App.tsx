@@ -3,7 +3,7 @@ import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {HomeScreen, SignInScreen} from 'screens/index';
+import {HomeScreen, AccountScreen} from 'screens/index';
 import {Provider} from 'react-redux';
 import getStore from 'store/getStore';
 
@@ -13,6 +13,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const store = getStore();
+  console.log(store.getState().get('userToken'));
 
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
@@ -38,10 +39,10 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          {store.getState().userToken === null ? (
-            <Stack.Screen name="SignIn" component={SignInScreen} />
-          ) : (
+          {store.getState().get('userToken') ? (
             <Stack.Screen name="Home" component={HomeScreen} />
+          ) : (
+            <Stack.Screen name="Account" component={AccountScreen} />
           )}
         </Stack.Navigator>
       </NavigationContainer>
