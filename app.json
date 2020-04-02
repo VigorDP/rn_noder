@@ -1,4 +1,5 @@
 {
   "name": "rn_noder",
-  "displayName": "rn_noder"
+  "displayName": "rn_noder",
+  "host": "https://cnodejs.org/api/v1/"
 }
