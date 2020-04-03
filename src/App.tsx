@@ -1,55 +1,38 @@
 import {enableScreens} from 'react-native-screens';
 import React from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {HomeScreen, AccountScreen} from 'screens/index';
 import {Provider} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import getStore from 'store/getStore';
-
 enableScreens();
 
 const Stack = createStackNavigator();
 
 export default function App() {
   const store = getStore();
-  console.log(store.getState().get('userToken'));
-
+  const [token, setToken] = React.useState(null);
   React.useEffect(() => {
-    // Fetch the token from storage then navigate to our appropriate place
-    const bootstrapAsync = async () => {
-      let userToken: string | null = null;
-
-      try {
-        userToken = await AsyncStorage.getItem('userToken');
-      } catch (e) {
-        // Restoring token failed
-      }
-
-      // After restoring token, we may need to validate it in production apps
-
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
-      store.dispatch({type: 'RESTORE_TOKEN', token: userToken});
-      setTimeout(() => {
-        SplashScreen.hide();
-      }, 2000);
-    };
-    bootstrapAsync();
-  }, []);
-
+    SplashScreen.hide();
+    return store.subscribe(() => {
+      setToken(store.getState().getIn(['user', 'token']));
+    });
+  }, [token, store]);
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          {store.getState().get('userToken') ? (
-            <Stack.Screen name="Home" component={HomeScreen} />
-          ) : (
-            <Stack.Screen name="Account" component={AccountScreen} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator headerMode="none">
+            {token ? (
+              <Stack.Screen name="Home" component={HomeScreen} />
+            ) : (
+              <Stack.Screen name="Account" component={AccountScreen} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 }

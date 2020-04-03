@@ -1,1 +1,2 @@
-// declare module 'mirrorx';
+declare module '*.png';
+declare module '*.svg';
