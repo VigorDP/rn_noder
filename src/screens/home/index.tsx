@@ -1,42 +1,18 @@
 import * as React from 'react';
-import {View, Text, Button, AsyncStorage} from 'react-native';
-import {connect} from 'react-redux';
-import * as A from 'store/actions';
+import {createStackNavigator} from '@react-navigation/stack';
 
-function HomeScreen(props: any) {
+import TabScreen from './tab';
+import DetailScreen from './detail/DetailScreen';
+
+const Stack = createStackNavigator();
+
+function HomeScreen() {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="test"
-        onPress={() => {
-          props.updateUserInfo('111');
-        }}>
-        test
-      </Button>
-      <Button
-        title="退出登陆"
-        onPress={async () => {
-          props.updateUserInfo('');
-          await AsyncStorage.removeItem('token');
-        }}>
-        退出登陆
-      </Button>
-    </View>
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Tab" component={TabScreen} />
+      <Stack.Screen name="Detail" component={DetailScreen} />
+    </Stack.Navigator>
   );
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    token: state.getIn(['user', 'token']),
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    updateUserInfo: (token: string) => {
-      dispatch(A.UpdateUserInfoAction(token));
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default HomeScreen;

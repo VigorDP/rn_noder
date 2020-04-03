@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Root} from 'native-base';
 import {HomeScreen, AccountScreen} from 'screens/index';
 import getStore from 'store/getStore';

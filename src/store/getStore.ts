@@ -6,9 +6,16 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from './reducers';
 
 if (__DEV__) {
-  // @ts-ignore
   global.XMLHttpRequest =
     global.originalXMLHttpRequest || global.XMLHttpRequest;
+  global.FormData = global.originalFormData || global.FormData;
+  // fix: RN0.60以上RNDebugger的 network 不工作
+  if (window.FETCH_SUPPORT) {
+    window.FETCH_SUPPORT.blob = false;
+  } else {
+    global.FileReader = global.originalFileReader || global.FileReader;
+    GLOBAL.Blob = null;
+  }
 }
 
 let store;

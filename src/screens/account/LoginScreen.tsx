@@ -15,7 +15,9 @@ import {
   Label,
   Input,
 } from 'native-base';
-import {StyleSheet, AsyncStorage} from 'react-native';
+import {StyleSheet} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {connect} from 'react-redux';
 import * as A from 'store/actions';
 
