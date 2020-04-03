@@ -15,7 +15,7 @@ import {
   Label,
   Input,
 } from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, AsyncStorage} from 'react-native';
 import {connect} from 'react-redux';
 import * as A from 'store/actions';
 
@@ -42,22 +42,30 @@ function LoginScreen(props: any) {
       </Header>
       <Content contentContainerStyle={styles.container}>
         <Form style={styles.form}>
-          <Item stackedLabel>
+          <Item
+            stackedLabel
+            success={username ? true : false}
+            error={username ? false : true}>
             <Label>用户token</Label>
             <Input
               autoFocus
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically
+              returnKeyType="next"
               value={username}
               onChangeText={(value) => setUsername(value)}
             />
           </Item>
-          <Item stackedLabel>
+          <Item
+            stackedLabel
+            success={password ? true : false}
+            error={password ? false : true}>
             <Label>密码</Label>
             <Input
               secureTextEntry
               clearButtonMode="while-editing"
               enablesReturnKeyAutomatically
+              returnKeyType="done"
               value={password}
               onChangeText={(value) => setPassword(value)}
             />
@@ -67,7 +75,10 @@ function LoginScreen(props: any) {
             dark
             style={styles.button}
             disabled={username && password ? false : true}
-            onPress={() => props.updateUserInfo(username)}>
+            onPress={() => {
+              props.updateUserInfo(username);
+              AsyncStorage.setItem('token', username);
+            }}>
             <Text>登录</Text>
           </Button>
         </Form>

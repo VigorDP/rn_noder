@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {View, Image, StyleSheet, Alert} from 'react-native';
-import {Button, Text, Icon} from 'native-base';
+import {View, Image, StyleSheet} from 'react-native';
+import {Button, Text, Icon, Toast} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import * as Imgs from 'assets/imgs';
 
@@ -14,7 +14,13 @@ function WelcomeScreen(props: any) {
           block
           success
           style={styles.button}
-          onPress={() => Alert.alert('开发中...')}>
+          onPress={() =>
+            Toast.show({
+              text: '开发中...',
+              position: 'bottom',
+              textStyle: {textAlign: 'center'},
+            })
+          }>
           <Icon name="wechat" type="AntDesign" />
           <Text style={styles.wechatText}>使用微信账号登录</Text>
         </Button>

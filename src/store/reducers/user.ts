@@ -3,7 +3,7 @@ import {UpdateUserInfoAction} from '../actions';
 import Immutable from 'immutable';
 
 const defaultMap = Immutable.Map({
-  token: null,
+  token: '',
 });
 
 export const user = handleActions(

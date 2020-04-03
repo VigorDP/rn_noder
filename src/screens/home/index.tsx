@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, AsyncStorage} from 'react-native';
 import {connect} from 'react-redux';
 import * as A from 'store/actions';
 
@@ -16,8 +16,9 @@ function HomeScreen(props: any) {
       </Button>
       <Button
         title="退出登陆"
-        onPress={() => {
+        onPress={async () => {
           props.updateUserInfo('');
+          await AsyncStorage.removeItem('token');
         }}>
         退出登陆
       </Button>
