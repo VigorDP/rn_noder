@@ -2,13 +2,13 @@ import * as React from 'react';
 import {
   Container,
   Header,
-  Content,
   Button,
   Left,
   Icon,
   Body,
   Title,
   Right,
+  Content,
 } from 'native-base';
 import {StyleSheet} from 'react-native';
 import {WebView} from 'react-native-webview';
@@ -17,7 +17,7 @@ import getTotalHtml from 'utils/getTotalHtml';
 function DetailScreen(props: any) {
   const html = props.route.params.content || '';
   const title = props.route.params.title || 'CNode爱好者';
-  const htmlWithWrapper = getTotalHtml(html);
+  const htmlWithWrapper = getTotalHtml(html, title);
   return (
     <Container>
       <Header transparent>
@@ -31,7 +31,7 @@ function DetailScreen(props: any) {
           </Button>
         </Left>
         <Body>
-          <Title>{title || '详情页'}</Title>
+          <Title>文章详情</Title>
         </Body>
         <Right />
       </Header>

@@ -1,4 +1,7 @@
-export default function (html) {
+export default function (html, title) {
+  // 修复 src 以"//"开头的图片无法显示问题,方案为：匹配地址并在其头部加上https:前缀
+  const reg = /"\/\/.*?"/g;
+  const fixedHtml = html.replace(reg, (s) => '"https:' + s.substring(1));
   const temp = `
     <!DOCTYPE html>
     <html>
@@ -14,7 +17,7 @@ export default function (html) {
         }
 
         .markdown-body {
-          padding:20px;
+          padding:20px 10px;
           -ms-text-size-adjust: 100%;
           -webkit-text-size-adjust: 100%;
           line-height: 1.5;
@@ -23,8 +26,6 @@ export default function (html) {
           font-size: 16px;
           line-height: 1.5;
           word-wrap: break-word;
-          overflow:scrolling;
-          -webkit-overflow-scrolling:touch;
         }
 
         .markdown-body .pl-c {
@@ -710,7 +711,12 @@ export default function (html) {
     </head>
 
     <body>
-        <div id="root" class="markdown-body">${html}</div>
+        <div id="root" class="markdown-body">
+          <h3>${title}</h3>
+          <section>
+            ${fixedHtml}
+          </section>
+        </div>
     </body>
 
     </html>
