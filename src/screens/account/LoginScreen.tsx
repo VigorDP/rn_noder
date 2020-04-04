@@ -14,6 +14,7 @@ import {
   Item,
   Label,
   Input,
+  Toast,
 } from 'native-base';
 import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -22,7 +23,9 @@ import {connect} from 'react-redux';
 import * as A from 'store/actions';
 
 function LoginScreen(props: any) {
-  const [username, setUsername] = React.useState('');
+  const [username, setUsername] = React.useState(
+    'd2726e8f-7dc2-4ae8-a4ca-45e74fc3494e',
+  );
   const [password, setPassword] = React.useState('');
 
   return (
@@ -77,9 +80,19 @@ function LoginScreen(props: any) {
             dark
             style={styles.button}
             disabled={username && password ? false : true}
-            onPress={() => {
-              props.updateUserInfo(username);
-              AsyncStorage.setItem('token', username);
+            onPress={async () => {
+              try {
+                const {
+                  payload: {success, error_msg},
+                } = await props.login(username);
+                console.log('suc', success, error_msg);
+                success
+                  ? (props.updateUserInfo(username),
+                    AsyncStorage.setItem('token', username))
+                  : Toast.show({text: error_msg});
+              } catch (e) {
+                console.log('aa', e.message);
+              }
             }}>
             <Text>登录</Text>
           </Button>
@@ -109,6 +122,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     updateUserInfo: (token: string) => {
       dispatch(A.UpdateUserInfoAction(token));
+    },
+    login: (token: string) => {
+      return dispatch(A.LoginAction(token));
     },
   };
 };

@@ -1,5 +1,8 @@
 export default function (html, title) {
   // 修复 src 以"//"开头的图片无法显示问题,方案为：匹配地址并在其头部加上https:前缀
+  if (!html) {
+    return;
+  }
   const reg = /"\/\/.*?"/g;
   const fixedHtml = html.replace(reg, (s) => '"https:' + s.substring(1));
   const temp = `

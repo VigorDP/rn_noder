@@ -22,6 +22,7 @@
     "@types/redux-immutable": "^4.0.1",
     "@types/redux-promise": "^0.5.28",
     "@types/webpack": "^4.41.10",
+    "axios": "^0.19.2",
     "dayjs": "^1.8.23",
     "immutable": "^4.0.0-rc.12",
     "native-base": "^2.13.12",

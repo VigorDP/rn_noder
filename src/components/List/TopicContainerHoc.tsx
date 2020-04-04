@@ -44,8 +44,8 @@ export default function ({tab = 'all', title = '精华'}) {
       return this.loadData(this.currentPage + 1);
     };
 
-    onItemPressed = (content, title) => {
-      return this.props.navigation.navigate('Detail', {content, title});
+    onItemPressed = (id) => {
+      return this.props.navigation.navigate('Detail', {id});
     };
 
     componentDidMount = async () => {

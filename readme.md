@@ -25,3 +25,11 @@ $(SRCROOT)/../node_modules/react-native-splash-screen/ios
   https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06
 
 - xcode 黄色文件夹是逻辑文件夹(不一定对应真实文件夹)，绿色文件夹是不参与编译的文件夹，一般作为资源文件夹，创建文件夹时 new group without/with folder 区别是是否在磁盘上建立真正的文件夹
+
+- http error 的结构
+
+```
+name: "Error"
+message: ""
+toString: ƒ toString()
+```

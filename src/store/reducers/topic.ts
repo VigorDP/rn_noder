@@ -1,6 +1,11 @@
 import {Topic} from '../records';
 import {handleActions} from 'redux-actions';
-import {getTopicByTabNameAction, clearTopicAction} from '../actions';
+import {
+  getTopicByTabNameAction,
+  clearTopicAction,
+  getTopicDetailAction,
+  clearDetailAction,
+} from '../actions';
 import Immutable from 'immutable';
 
 const defaultMap = Immutable.Map({
@@ -9,6 +14,7 @@ const defaultMap = Immutable.Map({
   job: Immutable.List(),
   good: Immutable.List(),
   ask: Immutable.List(),
+  detail: Immutable.Map(),
 });
 
 export const topic = handleActions(
@@ -24,6 +30,12 @@ export const topic = handleActions(
     },
     [clearTopicAction](state, {payload: {tab}}) {
       return state.set(tab, Immutable.List());
+    },
+    [getTopicDetailAction](state, {payload: {data}}) {
+      return state.set('detail', Immutable.Map(data));
+    },
+    [clearDetailAction](state) {
+      return state.set('detail', Immutable.Map({}));
     },
   },
   defaultMap,

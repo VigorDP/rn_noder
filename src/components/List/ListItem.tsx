@@ -44,10 +44,7 @@ export class ListItem extends Component {
             </Body>
           </Left>
         </CardItem>
-        <CardItem
-          cardBody
-          button
-          onPress={() => props.onPressed(itemData.content, itemData.title)}>
+        <CardItem cardBody button onPress={() => props.onPressed(itemData.id)}>
           <Text style={styles.title}>{itemData.title}</Text>
         </CardItem>
         <CardItem>
