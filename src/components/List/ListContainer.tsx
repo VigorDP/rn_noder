@@ -57,7 +57,7 @@ export default class ListContainer extends React.Component<Props, {}> {
           <ListItem item={item} onPressed={this.props.onItemPressed} />
         )}
         // ItemSeparatorComponent={this._renderSeparator} // 行与行之间的分隔线组件。不会出现在第一行之前和最后一行之后
-        ListEmptyComponent={this._renderEmpty}
+        // ListEmptyComponent={this._renderEmpty}
         ListFooterComponent={this._footer}
         refreshing={this.props.refreshing} // 是否刷新 ，自带刷新控件
         onRefresh={this.props.onRefresh}
