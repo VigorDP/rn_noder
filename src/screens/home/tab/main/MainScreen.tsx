@@ -23,10 +23,10 @@ const TopicJobComponent = Topic({tab: 'job', title: '问答'});
 function MainScreen(props: any) {
   return (
     <Container>
-      <Header transparent style={{marginTop: -20}}>
-        <Left />
+      <Header transparent>
+        {/* <Left /> */}
         <Body>
-          <Title>CNode 社区</Title>
+          <Title style={{color: 'black'}}>CNode 社区</Title>
         </Body>
         <Right />
       </Header>
@@ -34,31 +34,41 @@ function MainScreen(props: any) {
         <Tab
           heading="全部"
           textStyle={styles.textStyle}
-          activeTextStyle={styles.activeTextStyle}>
+          activeTextStyle={styles.activeTextStyle}
+          tabStyle={styles.grayBg}
+          activeTabStyle={styles.grayBg}>
           <TopicAllComponent {...props} />
         </Tab>
         <Tab
           heading="精华"
           textStyle={styles.textStyle}
-          activeTextStyle={styles.activeTextStyle}>
+          activeTextStyle={styles.activeTextStyle}
+          tabStyle={styles.grayBg}
+          activeTabStyle={styles.grayBg}>
           <TopicGoodComponent {...props} />
         </Tab>
         <Tab
           heading="分享"
           textStyle={styles.textStyle}
-          activeTextStyle={styles.activeTextStyle}>
+          activeTextStyle={styles.activeTextStyle}
+          tabStyle={styles.grayBg}
+          activeTabStyle={styles.grayBg}>
           <TopicShareComponent {...props} />
         </Tab>
         <Tab
           heading="问答"
           textStyle={styles.textStyle}
-          activeTextStyle={styles.activeTextStyle}>
+          activeTextStyle={styles.activeTextStyle}
+          tabStyle={styles.grayBg}
+          activeTabStyle={styles.grayBg}>
           <TopicAskComponent {...props} />
         </Tab>
         <Tab
           heading="招聘"
           textStyle={styles.textStyle}
-          activeTextStyle={styles.activeTextStyle}>
+          activeTextStyle={styles.activeTextStyle}
+          tabStyle={styles.grayBg}
+          activeTabStyle={styles.grayBg}>
           <TopicJobComponent {...props} />
         </Tab>
       </Tabs>
@@ -75,6 +85,9 @@ const styles = StyleSheet.create({
   activeTextStyle: {
     color: 'black',
     fontSize: 16,
+  },
+  grayBg: {
+    backgroundColor: '#eee',
   },
 });
 

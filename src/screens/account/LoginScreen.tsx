@@ -85,14 +85,11 @@ function LoginScreen(props: any) {
                 const {
                   payload: {success, error_msg},
                 } = await props.login(username);
-                console.log('suc', success, error_msg);
                 success
                   ? (props.updateUserInfo(username),
                     AsyncStorage.setItem('token', username))
                   : Toast.show({text: error_msg});
-              } catch (e) {
-                console.log('aa', e.message);
-              }
+              } catch (e) {}
             }}>
             <Text>登录</Text>
           </Button>

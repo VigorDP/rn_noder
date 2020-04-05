@@ -14,7 +14,6 @@ export default function ({tab = 'all', title = '精华'}) {
 
     loadData = async (page: number = 1, isResetCurrentPage) => {
       const result = await this.props.getTopicByTabNameAction({page});
-      console.log('result', result);
       const {
         payload: {success},
       } = result;
