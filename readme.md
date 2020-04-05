@@ -12,7 +12,7 @@
 - 用 xcode 打开 xcworkspace,而不是 xcodeproj
 - 清 RN 缓存
   rm -rf \$TMPDIR/react-\* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
-
+- 启动屏制作参考 [这里](https://dev-yakuza.github.io/en/react-native/react-native-splash-screen/#installation)
 - RNSplashScreen.h 找不到
   select your project → Build Settings → Search Paths → Header Search Paths to add:
 
